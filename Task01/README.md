@@ -3,7 +3,7 @@
 **Source:** Assignment 4, Task 1 (pages 2–3).
 
 ## Files
-- `task1.java` – separates input handling from the `FeeService` validation/payment logic.
+- `task1.java` – AWT fee-payment window with a separate `FeeService` class.
 
 ## Design points
 1. Keep UI code separate from payment/service logic.
@@ -23,10 +23,10 @@ javac task1.java
 java task1
 ```
 
-The current program is a console demonstration of the service separation; connect a real payment gateway/database before treating a payment as completed.
+The payment result is a demonstration only. Connect a real payment gateway/database before treating a payment as completed.
 
 ## Result
-Expected: valid input displays a confirmation; missing register number or invalid amount displays a validation message.
+The window accepts a register number and amount. Pay validates the input, Clear empties the fields, and Receipt displays a receipt-status message.
 
 ## Evidence
-Add your own execution screenshot here after running the program.
+Add your own execution screenshot after running the program.
