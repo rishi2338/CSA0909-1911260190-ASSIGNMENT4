@@ -1,0 +1,17 @@
+Original faulty code supplied in Assignment 4 PDF:
+
+public class DrawPad extends Frame {
+    int count = 0; Label status = new Label("Clicks: 0");
+    public DrawPad() {
+        add(status, BorderLayout.SOUTH);
+        addMouseListener(new MouseAdapter() {
+            public void mouseclicked(MouseEvent e) {
+                count++;
+                Graphics g = getGraphics(); g.fillOval(e.getX(), e.getY(), 6, 6);
+            }
+        });
+        setSize(400, 300); setVisible(true);
+    }
+}
+
+The PDF also supplies a second DrawPad skeleton with TODO 1 (override mouseClicked, store point, update label and repaint) and TODO 2 (draw stored points in paint). The completed implementation is task4.java. The faulty code above is included for defect analysis only; do not compile it as the solution.
