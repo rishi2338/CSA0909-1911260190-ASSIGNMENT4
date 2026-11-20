@@ -31,8 +31,10 @@ public class task3 extends JFrame {
         bottom.add(actions, BorderLayout.CENTER);
         bottom.add(status, BorderLayout.SOUTH);
 
-        add(new JLabel("Campus Library", SwingConstants.CENTER), BorderLayout.NORTH);
-        add(searchRow, BorderLayout.PAGE_START);
+        JPanel header = new JPanel(new BorderLayout());
+        header.add(new JLabel("Campus Library", SwingConstants.CENTER), BorderLayout.NORTH);
+        header.add(searchRow, BorderLayout.SOUTH);
+        add(header, BorderLayout.NORTH);
         add(resultPanel, BorderLayout.CENTER);
         add(bottom, BorderLayout.SOUTH);
 
