@@ -1,6 +1,6 @@
 # Programming in Java – Assignment 4 (CO4)
 
-**Student name:** Rishi Nathan  
+**Student name:** L Rishinathan  
 **Register number:** 1911260190  
 **Java version:** Record the installed version using `java -version` before submission.
 
