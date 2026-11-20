@@ -4,66 +4,93 @@ import javax.swing.*;
 
 public class task5 extends JFrame implements ActionListener {
     private final JTextField amount = new JTextField(10);
-    private final JComboBox<String> from = new JComboBox<>(new String[]{"INR", "USD", "EUR"});
-    private final JComboBox<String> to = new JComboBox<>(new String[]{"USD", "EUR", "INR"});
-    private final JLabel result = new JLabel("Result appears here");
-    private static final double[] INR_PER_UNIT = {1.0, 83.0, 90.0};
+    private final JComboBox<String> target =
+            new JComboBox<>(new String[]{"USD", "EUR"});
+    private final JLabel result = new JLabel(" ");
+    
+    private static double rate(String currency) {
+        return currency.equals("USD") ? 0.012 : 0.011;
+    }
 
     public task5(int style) {
-        super("Currency Converter – Event Style " + style);
+        super("Currency Converter");
         setLayout(new FlowLayout());
-        add(new JLabel("Amount")); add(amount);
-        add(from); add(new JLabel("to")); add(to);
-        JButton convert = new JButton("Convert");
-        add(convert); add(result);
+        JButton convertButton = new JButton("Convert");
+        add(new JLabel("INR"));
+        add(amount);
+        add(target);
+        add(convertButton);
+        add(result);
 
         switch (style) {
-            case 1: // The frame itself is the listener.
-                convert.addActionListener(this);
+            case 1: // Frame itself implements ActionListener.
+                convertButton.addActionListener(this);
                 amount.addActionListener(this);
                 break;
             case 2: // Named inner class.
                 ConvertHandler handler = new ConvertHandler();
-                convert.addActionListener(handler); amount.addActionListener(handler);
+                convertButton.addActionListener(handler);
+                amount.addActionListener(handler);
                 break;
             case 3: // Anonymous inner class.
                 ActionListener anonymous = new ActionListener() {
-                    @Override public void actionPerformed(ActionEvent e) { convertAction(); }
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        convert();
+                    }
                 };
-                convert.addActionListener(anonymous); amount.addActionListener(anonymous);
+                convertButton.addActionListener(anonymous);
+                amount.addActionListener(anonymous);
                 break;
-            case 4: // Lambda expression.
-                ActionListener lambda = e -> convertAction();
-                convert.addActionListener(lambda); amount.addActionListener(lambda);
+            case 4: // One shared lambda listener.
+                ActionListener lambda = e -> convert();
+                convertButton.addActionListener(lambda);
+                amount.addActionListener(lambda);
                 break;
-            default: throw new IllegalArgumentException("Choose style 1 to 4");
+            default:
+                throw new IllegalArgumentException("Choose style 1 to 4");
         }
+
         addWindowListener(new WindowAdapter() {
-            @Override public void windowClosing(WindowEvent e) { dispose(); }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
         });
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        pack(); setLocationRelativeTo(null);
+        pack();
+        setLocationRelativeTo(null);
     }
 
-    @Override public void actionPerformed(ActionEvent e) { convertAction(); }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        convert();
+    }
 
-    private void convertAction() {
+    private void convert() {
         try {
             double value = Double.parseDouble(amount.getText().trim());
-            if (!Double.isFinite(value) || value < 0) throw new NumberFormatException();
-            int f = from.getSelectedIndex(), t = to.getSelectedIndex();
-            double converted = value * INR_PER_UNIT[f] / INR_PER_UNIT[t];
-            String message = String.format("%.2f %s", converted, to.getSelectedItem());
+            if (!Double.isFinite(value) || value < 0) {
+                throw new NumberFormatException();
+            }
+            String currency = (String) target.getSelectedItem();
+            double converted = value * rate(currency);
+            String message = String.format("%.2f %s", converted, currency);
             result.setText(message);
-            JOptionPane.showMessageDialog(this, message, "Conversion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, message,
+                    "Conversion Result", JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException ex) {
             result.setText("Invalid amount");
-            JOptionPane.showMessageDialog(this, "Invalid amount", "Input error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Invalid amount",
+                    "Input Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private class ConvertHandler implements ActionListener {
-        @Override public void actionPerformed(ActionEvent e) { convertAction(); }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            convert();
+        }
     }
 
     public static void main(String[] args) {
