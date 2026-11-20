@@ -1,5 +1,9 @@
 # Programming in Java – Assignment 4 (CO4)
 
+**Student name:** Rishi Nathan  
+**Register number:** 1911260190  
+**Java version:** Record the installed version using `java -version` before submission.
+
 Repository: [CSA0909-1911260190-ASSIGNMENT4](https://github.com/rishi2338/CSA0909-1911260190-ASSIGNMENT4)
 
 This repository organises the six tasks from the SIMATS Engineering Programming in Java Assignment 4 – Event-Driven GUI Design.
@@ -15,10 +19,10 @@ This repository organises the six tasks from the SIMATS Engineering Programming 
 | `Task05` | `task5.java` | Four event-handling styles |
 | `Task06` | `task6.java` | Campus event registration with JDBC |
 
-Each task folder has its own README with compile/run instructions and evidence checklist. Task 6 also contains `schema.sql`.
+Each task folder has its own README with compile/run instructions and an evidence checklist. Task 6 also contains `schema.sql`.
 
 ## Software
-- Java: JDK 8 or later (record the exact version used with `java -version`).
+- Java: JDK 8 or later.
 - Task 6 additionally requires MySQL Server and MySQL Connector/J.
 
 ## Run a task
