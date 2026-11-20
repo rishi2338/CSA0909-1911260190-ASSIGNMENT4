@@ -1,9 +1,3 @@
-/*
- * ASSIGNMENT 4 - TASK 1
- * Redesigned fee-payment GUI with a separate FeeService for validation.
- * The service currently demonstrates validation only; connect it to a
- * prepared JDBC statement/payment gateway for a real payment system.
- */
 import java.awt.*;
 import java.awt.event.*;
 
@@ -22,7 +16,6 @@ public class task1 extends Frame {
             catch (NumberFormatException ex) { return "Enter a valid amount."; }
             if (!Double.isFinite(value) || value <= 0)
                 return "Amount must be greater than zero.";
-            // Demonstration only: replace with a prepared JDBC transaction/payment gateway.
             return String.format("Payment of %.2f recorded for %s.", value, registerNumber);
         }
     }
