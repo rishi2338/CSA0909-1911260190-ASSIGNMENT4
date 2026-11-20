@@ -3,7 +3,8 @@
 **Source:** Assignment 4, Task 4 (pages 5–6).
 
 ## Files
-- `task4.java` – corrected AWT drawing pad.
+- `task4.java` – completed AWT drawing pad based on the PDF's TODO requirements.
+- `given_task4.txt` – original faulty example from the PDF, preserved for defect analysis.
 
 ## Defects repaired
 - The listener method is correctly named `mouseClicked`; Java is case-sensitive.
