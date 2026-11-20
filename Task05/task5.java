@@ -1,9 +1,3 @@
-/*
- * ASSIGNMENT 4 - TASK 5
- * Completed currency converter using the PDF's USD/EUR choices and rates.
- * Includes four event-handling styles: frame listener, named inner class,
- * anonymous inner class, and lambda. Both Convert and Enter trigger conversion.
- */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -29,16 +23,16 @@ public class task5 extends JFrame implements ActionListener {
         add(result);
 
         switch (style) {
-            case 1: // Frame itself implements ActionListener.
+            case 1:
                 convertButton.addActionListener(this);
                 amount.addActionListener(this);
                 break;
-            case 2: // Named inner class.
+            case 2:
                 ConvertHandler handler = new ConvertHandler();
                 convertButton.addActionListener(handler);
                 amount.addActionListener(handler);
                 break;
-            case 3: // Anonymous inner class.
+            case 3:
                 ActionListener anonymous = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -48,7 +42,7 @@ public class task5 extends JFrame implements ActionListener {
                 convertButton.addActionListener(anonymous);
                 amount.addActionListener(anonymous);
                 break;
-            case 4: // One shared lambda listener.
+            case 4:
                 ActionListener lambda = e -> convert();
                 convertButton.addActionListener(lambda);
                 amount.addActionListener(lambda);
