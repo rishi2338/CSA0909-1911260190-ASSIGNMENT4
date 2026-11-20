@@ -1,17 +1,18 @@
-# Task 5 – Event-Handling Styles
+# Task 5 – Same Screen, Different Event-Handling Styles
 
 **Source:** Assignment 4, Task 5 (pages 6–7).
 
 ## Files
-- `task5.java` – one converter program demonstrating four registration styles, selected by command-line argument.
+- `task5.java` – completed converter based on the PDF's lambda-version starter; also demonstrates all four required listener styles.
+- `given_task5.txt` – original TODO starter code copied from the PDF for reference.
 
 ## Four styles
-1. Frame method callback (method reference).
+1. Frame itself implements `ActionListener`.
 2. Named inner class.
 3. Anonymous inner class.
 4. Lambda expression.
 
-Each selected listener is shared by the Convert button and Enter key in the amount field. A `WindowAdapter` handles closing. The result is displayed in both the result label and a dialog.
+Each selected listener is shared by the Convert button and Enter key in the amount field. A `WindowAdapter` handles window closing. The conversion uses the assignment's fixed rates: USD = 0.012 and EUR = 0.011 per INR. The result is displayed to two decimal places in the label and a dialog.
 
 ## Compile and run
 Requires JDK 8 or later.
@@ -24,8 +25,10 @@ java task5 3
 java task5 4
 ```
 
+The default is style 4 (lambda).
+
 ## Result
-Use a numeric amount to display the converted value, or enter invalid text to display **Invalid amount**. The rates are illustrative fixed values, not live exchange rates.
+Enter a valid non-negative amount, choose USD or EUR and convert. Invalid text displays **Invalid amount**. The rates are the fixed example values printed in the assignment, not live exchange rates.
 
 ## Evidence
-Add one valid-conversion screenshot and one invalid-input screenshot for the lambda version (`java task5 4`). Record the code changes needed when adding the Enter-key trigger and dialog output.
+Add screenshots of a valid conversion and an invalid amount. Record how much code changes when the Enter-key trigger and dialog output are added to each listener style.
