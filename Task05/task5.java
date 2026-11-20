@@ -1,3 +1,29 @@
+/*
+ * ASSIGNMENT 4 - TASK 5
+ *
+ * The PDF's supplied Converter skeleton is the lambda version (style d).
+ * Its TODOs are completed in the runnable code below. The same conversion
+ * action is also implemented using the other three required listener styles.
+ *
+ * Supplied starter's key declarations:
+ * private final JTextField amount = new JTextField(10);
+ * private final JComboBox<String> target =
+ *         new JComboBox<>(new String[]{"USD", "EUR"});
+ * private final JLabel result = new JLabel(" ");
+ *
+ * private static double rate(String currency) {
+ *     return currency.equals("USD") ? 0.012 : 0.011;
+ * }
+ *
+ * TODO 1: Register ONE lambda listener for both the Convert button and the
+ *         Enter key in the amount field.
+ * TODO 2: Parse the amount and show the converted value with 2 decimals,
+ *         or "Invalid amount" if parsing fails.
+ *
+ * The completed version below retains the exact USD/EUR choices and rates
+ * from the PDF, handles Enter and button clicks, displays a dialog, and
+ * includes all four event-handling styles for Task 5.1.
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,7 +33,7 @@ public class task5 extends JFrame implements ActionListener {
     private final JComboBox<String> target =
             new JComboBox<>(new String[]{"USD", "EUR"});
     private final JLabel result = new JLabel(" ");
-    
+
     private static double rate(String currency) {
         return currency.equals("USD") ? 0.012 : 0.011;
     }
