@@ -1,8 +1,3 @@
-/*
- * ASSIGNMENT 4 - TASK 4
- * Completed drawing-pad implementation: stores click points, updates the
- * click counter, requests repaint(), and redraws stored points in paint().
- */
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
