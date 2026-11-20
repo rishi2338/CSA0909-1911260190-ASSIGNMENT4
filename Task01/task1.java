@@ -1,25 +1,6 @@
 /*
  * ASSIGNMENT 4 - TASK 1
- * Original code supplied in the PDF (kept as a comment because it is
- * intentionally incomplete/unsafe and is the code being reviewed):
- *
- * public class FeeWindow extends Frame implements ActionListener {
- *   TextField regNo = new TextField(); TextField amount = new TextField();
- *   Button pay = new Button("Pay"), clear = new Button("Clear"), receipt =
- *       new Button("Receipt");
- *   public void actionPerformed(ActionEvent e) {
- *     if (e.getActionCommand() == "Pay") {
- *       double a = Double.parseDouble(amount.getText());
- *       Connection c = DriverManager.getConnection(URL, USER, PWD);
- *       c.createStatement().executeUpdate("INSERT INTO fees VALUES('" +
- *           regNo.getText() + "'," + a + ")");
- *       Thread.sleep(3000);
- *       System.out.println("Paid");
- *     } else { regNo.setText(""); amount.setText(""); }
- *   }
- * }
- *
- * The runnable redesign below separates the window from FeeService.
+ * Redesigned fee-payment GUI with a separate FeeService for validation.
  * The service currently demonstrates validation only; connect it to a
  * prepared JDBC statement/payment gateway for a real payment system.
  */
