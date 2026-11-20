@@ -3,7 +3,8 @@
 **Source:** Assignment 4, Task 1 (pages 2–3).
 
 ## Files
-- `task1.java` – AWT fee-payment window with a separate `FeeService` class.
+- `task1.java` – redesigned AWT fee-payment window with a separate `FeeService` class.
+- `given_task1.txt` – original poor event-handling code copied from the PDF for diagnosis.
 
 ## Design points
 1. Keep UI code separate from payment/service logic.
