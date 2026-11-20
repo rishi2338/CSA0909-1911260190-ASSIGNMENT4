@@ -2,18 +2,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class task5 extends JFrame {
+public class task5 extends JFrame implements ActionListener {
     private final JTextField amount = new JTextField(10);
     private final JComboBox<String> from = new JComboBox<>(new String[]{"INR", "USD", "EUR"});
     private final JComboBox<String> to = new JComboBox<>(new String[]{"USD", "EUR", "INR"});
     private final JLabel result = new JLabel("Result appears here");
-    private final int style;
-
-    private static final double INR_PER_UNIT[] = {1.0, 83.0, 90.0};
+    private static final double[] INR_PER_UNIT = {1.0, 83.0, 90.0};
 
     public task5(int style) {
         super("Currency Converter – Event Style " + style);
-        this.style = style;
         setLayout(new FlowLayout());
         add(new JLabel("Amount")); add(amount);
         add(from); add(new JLabel("to")); add(to);
@@ -21,26 +18,26 @@ public class task5 extends JFrame {
         add(convert); add(result);
 
         switch (style) {
-            case 1: // Frame itself implements the action through an adapter callback.
-                convert.addActionListener(this::convertAction);
-                amount.addActionListener(this::convertAction);
+            case 1: // The frame itself is the listener.
+                convert.addActionListener(this);
+                amount.addActionListener(this);
                 break;
             case 2: // Named inner class.
                 ConvertHandler handler = new ConvertHandler();
-                convert.addActionListener(handler);
-                amount.addActionListener(handler);
+                convert.addActionListener(handler); amount.addActionListener(handler);
                 break;
             case 3: // Anonymous inner class.
                 ActionListener anonymous = new ActionListener() {
-                    @Override public void actionPerformed(ActionEvent e) { convertAction(e); }
+                    @Override public void actionPerformed(ActionEvent e) { convertAction(); }
                 };
                 convert.addActionListener(anonymous); amount.addActionListener(anonymous);
                 break;
-            default: // One lambda listener shared by both event sources.
-                ActionListener lambda = e -> convertAction(e);
+            case 4: // Lambda expression.
+                ActionListener lambda = e -> convertAction();
                 convert.addActionListener(lambda); amount.addActionListener(lambda);
+                break;
+            default: throw new IllegalArgumentException("Choose style 1 to 4");
         }
-
         addWindowListener(new WindowAdapter() {
             @Override public void windowClosing(WindowEvent e) { dispose(); }
         });
@@ -48,7 +45,9 @@ public class task5 extends JFrame {
         pack(); setLocationRelativeTo(null);
     }
 
-    private void convertAction(ActionEvent event) {
+    @Override public void actionPerformed(ActionEvent e) { convertAction(); }
+
+    private void convertAction() {
         try {
             double value = Double.parseDouble(amount.getText().trim());
             if (!Double.isFinite(value) || value < 0) throw new NumberFormatException();
@@ -64,12 +63,11 @@ public class task5 extends JFrame {
     }
 
     private class ConvertHandler implements ActionListener {
-        @Override public void actionPerformed(ActionEvent e) { convertAction(e); }
+        @Override public void actionPerformed(ActionEvent e) { convertAction(); }
     }
 
     public static void main(String[] args) {
         int style = args.length == 0 ? 4 : Integer.parseInt(args[0]);
-        if (style < 1 || style > 4) throw new IllegalArgumentException("Choose style 1 to 4");
         SwingUtilities.invokeLater(() -> new task5(style).setVisible(true));
     }
 }
